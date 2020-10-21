@@ -4,11 +4,14 @@ import { StyleSheet, View, Image } from "react-native";
 const RADIUS = 20;
 
 class Item extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
   render() {
     const x = this.props.position[0] - RADIUS / 2;
     const y = this.props.position[1] - RADIUS / 2;
     return (
-        <Image source={require('./assets/newspaper.png')} style={[styles.newspaper, { left: x, top: y }]}/>
+      <Image source={require('./assets/apple.png')} style={[styles.newspaper, { left: x, top: y }]}/>
     );
   }
 }
