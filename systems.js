@@ -21,12 +21,9 @@ const MoveItem = (entities, { touches }) => {
   };
 
   const update = (entities) => {
-    let item = entities[0];
-    let bin = entities[1];
-    console.log(item);
-    console.log(bin);
-
-
+    let item = entities[1];
+    let bin = entities[2];
+    return entities;
 
   }
    
