@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
 import { Item, Bin } from "./renderers";
-import { MoveFinger } from "./systems";
+import { MoveItem, update } from "./systems";
 
 const WIDTH = Dimensions.get("screen").width;
 const HEIGHT = Dimensions.get("screen").height;
@@ -15,7 +15,7 @@ export default function App() {
       <Text>TIME!</Text>
       <GameEngine
         style={styles.container}
-        systems={[MoveFinger]}
+        systems={[MoveItem]}
         entities={{
           1: { position: [WIDTH/2, HEIGHT-100], renderer: <Item />}, //-- Notice that each entity has a unique id (required)
           2: {position: [WIDTH - 40, HEIGHT/2], renderer: <Bin/>},

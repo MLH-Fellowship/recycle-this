@@ -8,7 +8,7 @@ class Item extends PureComponent {
     const x = this.props.position[0] - RADIUS / 2;
     const y = this.props.position[1] - RADIUS / 2;
     return (
-      <View style={[styles.finger, { left: x, top: y }]} />
+      <View style={[styles.item, { left: x, top: y }]} />
     );
   }
 }
@@ -25,7 +25,7 @@ class Bin extends PureComponent {
 }
  
 const styles = StyleSheet.create({
-  finger: {
+  item: {
     borderColor: "#CCC",
     borderWidth: 4,
     borderRadius: RADIUS * 2,
