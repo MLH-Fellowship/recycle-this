@@ -1,21 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, Dimensions} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
-import { Finger } from "./renderers";
+import { Item, Bin } from "./renderers";
 import { MoveFinger } from "./systems";
+
+const WIDTH = Dimensions.get("screen").width;
+const HEIGHT = Dimensions.get("screen").height;
 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello WOrld hhh!</Text>
+      <Text>TIME!</Text>
       <GameEngine
         style={styles.container}
         systems={[MoveFinger]}
         entities={{
-          1: { position: [40,  200], renderer: <Finger />}, //-- Notice that each entity has a unique id (required)
-          2: { position: [100, 200], renderer: <Finger />}, //-- and a renderer property (optional). If no renderer
+          1: { position: [WIDTH/2, HEIGHT-100], renderer: <Item />}, //-- Notice that each entity has a unique id (required)
+          2: {position: [WIDTH - 40, HEIGHT/2], renderer: <Bin/>},
+          3: {position: [WIDTH - 40, HEIGHT/4], renderer: <Bin/>},
+          4: {position: [WIDTH/8, HEIGHT/2], renderer: <Bin/>},
+          5: {position: [WIDTH/8, HEIGHT/4], renderer: <Bin/>},
+          6: {position: [WIDTH/2, HEIGHT/6], renderer: <Bin/>},
+
+
         }}>
  
         <StatusBar hidden={true} />
@@ -29,8 +38,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: "#FFF"
+  }
 });
