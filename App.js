@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Dimensions} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
 import { Item, Bin } from "./renderers";
 import { MoveItem, Collision } from "./systems";
-
+//import Constants from './Constants';
 const WIDTH = Dimensions.get("screen").width;
 const HEIGHT = Dimensions.get("screen").height;
 

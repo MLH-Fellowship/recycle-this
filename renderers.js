@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   bin: {
     borderColor: "#CCC",
     borderWidth: 4,
+    borderRadius: RADIUS * 2,
     width: RADIUS * 2,
     height: RADIUS * 2,
     backgroundColor: "blue",

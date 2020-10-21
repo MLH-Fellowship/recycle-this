@@ -27,10 +27,15 @@ const MoveItem = (entities, { touches }) => {
 
   const Collision = (entities) => {
     let item = entities[1];
-    let bin = entities[2];
-    if (item.position[0]==bin.position[0]) {
-      alert("score!");
-      item.position = [WIDTH/2, HEIGHT-100]
+    for (let i=2; i<7; i++) {
+      let bin = entities[i];
+      var dx = item.position[0]-bin.position[0];
+      var dy = item.position[1]-bin.position[1];
+      var distance = Math.sqrt(dx*dx+dy*dy);
+      if (distance < (RADIUS*2)) {
+        alert("score bin!"+i);
+        item.position = [WIDTH/2, HEIGHT-100]
+      }
     }
     return entities;
 
