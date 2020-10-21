@@ -1,4 +1,9 @@
+import { StyleSheet, Text, View, Dimensions} from 'react-native';
+
 const RADIUS = 20;
+
+const WIDTH = Dimensions.get("screen").width;
+const HEIGHT = Dimensions.get("screen").height;
 
 const MoveItem = (entities, { touches }) => {
  
@@ -20,11 +25,15 @@ const MoveItem = (entities, { touches }) => {
    
   };
 
-  const update = (entities) => {
+  const Collision = (entities) => {
     let item = entities[1];
     let bin = entities[2];
+    if (item.position[0]==bin.position[0]) {
+      alert("score!");
+      item.position = [WIDTH/2, HEIGHT-100]
+    }
     return entities;
 
   }
    
-  export { MoveItem, update };
+  export { MoveItem, Collision };
