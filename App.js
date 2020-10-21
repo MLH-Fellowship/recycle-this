@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {PureComponent} from 'react';
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
 import { Item, Bin } from "./renderers";
@@ -9,7 +9,15 @@ const WIDTH = Dimensions.get("screen").width;
 const HEIGHT = Dimensions.get("screen").height;
 
 
-export default function App() {
+export default class App extends PureComponent  {
+  constructor() {
+    super();
+    this.setState ={
+      running: true
+    }
+  }
+
+  render() {
   return (
     <View style={styles.container}>
       <Text>TIME!</Text>
@@ -24,7 +32,6 @@ export default function App() {
           5: {position: [WIDTH/8, HEIGHT/4], renderer: <Bin/>},
           6: {position: [WIDTH/2, HEIGHT/6], renderer: <Bin/>},
 
-
         }}>
  
         <StatusBar hidden={true} />
@@ -33,6 +40,7 @@ export default function App() {
       <StatusBar style="auto" />
     </View>
   );
+}
 }
 
 const styles = StyleSheet.create({
