@@ -2,12 +2,12 @@ import { StyleSheet, Text, View, Dimensions} from 'react-native';
 
 items = ["apple","banana", "can", "newspaper"];
 const RADIUS = 20;
-
-plastic = ["can"];
-paper = [];
-organic = ["apple", "banana"];
-glass =[];
-trash = [];
+let points = 0;
+let plastic = ["can", "plastic-bottle"];
+let paper = ["milk-box", "newspaper"];
+let organic = ["apple", "banana"];
+let glass =["champagne"];
+let trash = [];
 
 
 const WIDTH = Dimensions.get("screen").width;
@@ -33,6 +33,13 @@ const MoveItem = (entities, { touches }) => {
    
   };
 
+  function search (str, strArray) {
+    for (var j=0; j<strArray.length; j++) {
+        if (strArray[j].match(str)) return j;
+    }
+    return -1;
+}
+
   const Collision = (entities, {touches, dispatch, events}) => {
     let item = entities[1];
     let nextItem = items[Math.floor(Math.random() * items.length)];
@@ -45,10 +52,24 @@ const MoveItem = (entities, { touches }) => {
       var distance = Math.sqrt(dx*dx+dy*dy);
       if (distance < (RADIUS*2)) {
         item.position = [WIDTH/2, HEIGHT-100];
+        if ((search(item.item, plastic)!=-1 && bin.category=="plastic") ||
+         (search(item.item, organic)!=-1 && bin.category=="organic") ||
+         (search(item.item, paper)!=-1 && bin.category=="paper") ||
+         (search(item.item, glass)!=-1 && bin.category=="glass") ||
+         (search(item.item, trash)!=-1 && bin.category=="trash")) {
+            dispatch({type: "correct"});
+         }
+         else {
+            dispatch({type: "wrong"});
+         }
+ 
         item.item = nextItem;
+
       }
     }
     return entities;
   }
+
+
    
   export { MoveItem, Collision };

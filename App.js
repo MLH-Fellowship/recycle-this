@@ -12,6 +12,8 @@ const HEIGHT = Dimensions.get("screen").height;
 export default class App extends PureComponent  {
   constructor() {
     super();
+    this.engine = null;
+
     this.state ={
       running: true,
       points: 0,
@@ -23,13 +25,27 @@ export default class App extends PureComponent  {
     if (e.type=='game-over') {
       alert("game over!");
     }
+ 
+    if (e.type == 'correct') {
+      alert('update points');
+      this.setState({
+        points: this.state.points+10
+      })
+    }
+    if (e.type=='wrong') {
+      this.setState({
+        points: this.state.points-10
+      });
+    }
   }
 
   
   render() {
   return (
     <View style={styles.container}>
+      <Text style={styles.points}>POINTS: {this.state.points}</Text>
       <GameEngine
+      ref={(ref) => { this.engine = ref; }}
         style={styles.container}
         running = {this.state.running}
         onEvent = {this.onEvent}
@@ -55,5 +71,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFF"
+  },
+  points: {
+    color: 'red'
   }
+  
 });
