@@ -6,11 +6,21 @@ const RADIUS = 20;
 class Item extends PureComponent {
   constructor(props) {
     super(props);
+    this.state = {
+      item: this.props.item
+    }
   }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.item !== this.props.item) {
+      this.setState({item: this.props.item});
+    }
+  }
+
   render() {
     const x = this.props.position[0] - RADIUS / 2;
     const y = this.props.position[1] - RADIUS / 2;
-    let item = this.props.item;
+    let item = this.state.item;
     let img;
     switch(item) {
       case 'apple':
@@ -40,7 +50,7 @@ class Item extends PureComponent {
     //img = require('./assets/'+item+'.png'); -> should get rid of the long switch!
 
     return (
-      <Image source={img} style={[styles.item, { left: x, top: y }]}/>
+      <Image source={img} key={this.props.item} style={[styles.item, { left: x, top: y }]}/>
     );
   }
 }

@@ -17,9 +17,6 @@
     ],
     "ios": {
       "supportsTablet": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }

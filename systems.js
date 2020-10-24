@@ -1,6 +1,14 @@
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
 
+items = ["apple","banana", "can", "newspaper"];
 const RADIUS = 20;
+
+plastic = ["can"];
+paper = [];
+organic = ["apple", "banana"];
+glass =[];
+trash = [];
+
 
 const WIDTH = Dimensions.get("screen").width;
 const HEIGHT = Dimensions.get("screen").height;
@@ -25,20 +33,22 @@ const MoveItem = (entities, { touches }) => {
    
   };
 
-  const Collision = (entities) => {
+  const Collision = (entities, {touches, dispatch, events}) => {
     let item = entities[1];
+    let nextItem = items[Math.floor(Math.random() * items.length)];
+    if (nextItem==item.item)
+      nextItem = items[Math.floor(Math.random() * items.length)];
     for (let i=2; i<7; i++) {
       let bin = entities[i];
       var dx = item.position[0]-bin.position[0];
       var dy = item.position[1]-bin.position[1];
       var distance = Math.sqrt(dx*dx+dy*dy);
       if (distance < (RADIUS*2)) {
-        alert("score bin!"+i);
-        item.position = [WIDTH/2, HEIGHT-100]
+        item.position = [WIDTH/2, HEIGHT-100];
+        item.item = nextItem;
       }
     }
     return entities;
-
   }
    
   export { MoveItem, Collision };

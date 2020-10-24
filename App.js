@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {PureComponent} from 'react';
-import { StyleSheet, Text, View, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Alert} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
 import { Item, Bin } from "./renderers";
 import { MoveItem, Collision } from "./systems";
@@ -19,12 +19,20 @@ export default class App extends PureComponent  {
     }
   }
 
+  onEvent = (e) => {
+    if (e.type=='game-over') {
+      alert("game over!");
+    }
+  }
+
+  
   render() {
   return (
     <View style={styles.container}>
-      <Text>TIME!</Text>
       <GameEngine
         style={styles.container}
+        running = {this.state.running}
+        onEvent = {this.onEvent}
         systems={[MoveItem, Collision]}
         entities={{
           1: { position: [WIDTH/2, HEIGHT-100], item: this.state.item, renderer: <Item/>}, //-- Notice that each entity has a unique id (required)
@@ -35,9 +43,7 @@ export default class App extends PureComponent  {
           6: {position: [WIDTH/2, HEIGHT/6], category: "trash", renderer: <Bin/>},
 
         }}>
- 
-        <StatusBar hidden={true} />
- 
+      <StatusBar hidden={true} />
       </GameEngine>
       <StatusBar style="auto" />
     </View>
