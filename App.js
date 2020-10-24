@@ -15,7 +15,7 @@ export default class App extends PureComponent  {
     this.state ={
       running: true,
       points: 0,
-      item: "can"
+      item: "can" //random
     }
   }
 
