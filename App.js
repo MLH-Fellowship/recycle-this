@@ -18,7 +18,7 @@ const RootStack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
+      <RootStack.Navigator screenOptions={{headerShown:false}}>
         <RootStack.Screen name="Start" component={Start} />
         <RootStack.Screen name="Game" component={Game} />
         <RootStack.Screen name="GameOver" component={GameOver} />

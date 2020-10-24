@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {PureComponent} from 'react';
-import { StyleSheet, Text, View, Dimensions, Alert} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Alert, Button} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
 import { Item, Bin, Timer } from "./renderers";
 import { MoveItem, Collision } from "./systems";
@@ -17,6 +17,7 @@ export default class Game extends React.Component  {
     this.state ={
       running: true,
       points: 0,
+      timer: 1,
       item: "can" //random
     }
   }
@@ -29,7 +30,6 @@ export default class Game extends React.Component  {
     }
  
     if (e.type == 'correct') {
-      alert('update points');
       this.setState({
         points: this.state.points+10
       })
@@ -45,16 +45,28 @@ export default class Game extends React.Component  {
     this.setState({ running: false });
   }
 
-
+  reset = () => {
+    this.setState({
+        running: true,
+        points: 0,
+        timer: 1
+    });
+}
+//
+   /* componentDidMount() {
+        if (this.props.route.params.startAgain==true)
+        this.reset();
+    }*/
   
   render() {
-      if (this.state.running==false)
-      this.props.navigation.navigate("GameOver", {points: this.state.points});
-   
+      //if (this.state.running==false)
+        //this.props.navigation.navigate("GameOver", {points: this.state.points});
+   // if (!this.state.running && this.props.route.params.startAgain===true)
+     //   this.reset;
   return (
     <View style={styles.container}>
       <Text style={styles.points}>POINTS: {this.state.points}</Text>
-      <Timer onChange={this.onChangeTimer}/>
+      <Timer min={this.state.timer} onChange={this.onChangeTimer}/>
       <GameEngine
       ref={(ref) => { this.engine = ref; }}
         style={styles.container}
@@ -72,6 +84,21 @@ export default class Game extends React.Component  {
         }}>
       <StatusBar hidden={true} />
       </GameEngine>
+      {!this.state.running && 
+      Alert.alert(
+          'Game over! Your score: '+this.state.points,
+          '',
+          [
+              {
+                  text: 'Play again',
+                  onPress: () => this.reset()
+              },
+              {
+                  text: 'View Scoreboard',
+                  onPress: () => this.props.navigation.navigate("GameOver", {points: this.state.points})
+              }
+          ]
+      )} 
       <StatusBar style="auto" />
     </View>
   );

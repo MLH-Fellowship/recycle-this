@@ -6,8 +6,8 @@ const GameOver = ({route, navigation}) => {
     <View>
         <Text>Game Over. Your score is {route.params.points}.</Text>
         <Button
-        title="Play Again"
-        onPress={() => navigation.navigate('Game')}
+        title="Go back to menu"
+        onPress={() => navigation.navigate('Start')}
       />
     </View>
     );
