@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {PureComponent} from 'react';
 import { StyleSheet, Text, View, Dimensions, Alert} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
-import { Item, Bin } from "./renderers";
+import { Item, Bin, Timer } from "./renderers";
 import { MoveItem, Collision } from "./systems";
 //import Constants from './Constants';
 const WIDTH = Dimensions.get("screen").width;
@@ -44,6 +44,7 @@ export default class App extends PureComponent  {
   return (
     <View style={styles.container}>
       <Text style={styles.points}>POINTS: {this.state.points}</Text>
+      <Timer/>
       <GameEngine
       ref={(ref) => { this.engine = ref; }}
         style={styles.container}
