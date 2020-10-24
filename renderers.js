@@ -84,8 +84,8 @@ class Bin extends PureComponent {
 
 class Timer extends PureComponent {
 state = {
-  minutes: 1,
-  seconds: 0,
+  minutes: 0,
+  seconds: 5,
 }
 
 componentDidMount() {
@@ -100,6 +100,7 @@ componentDidMount() {
       if (seconds === 0) {
           if (minutes === 0) {
               clearInterval(this.myInterval)
+              this.props.onChange();
           } else {
               this.setState(({ minutes }) => ({
                   minutes: minutes - 1,
@@ -115,7 +116,7 @@ componentWillUnmount() {
 }
 
 render() {
-  const { minutes, seconds } = this.state
+  const { minutes, seconds } = this.state;
   return (
       <View>
           { minutes === 0 && seconds === 0

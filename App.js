@@ -24,6 +24,9 @@ export default class App extends PureComponent  {
   onEvent = (e) => {
     if (e.type=='game-over') {
       alert("game over!");
+      this.setState({
+        running: false
+      })
     }
  
     if (e.type == 'correct') {
@@ -39,12 +42,18 @@ export default class App extends PureComponent  {
     }
   }
 
+  onChange = () => {   
+    this.setState({ running: false });
+    alert('GAME OVER');
+  }
+
+
   
   render() {
   return (
     <View style={styles.container}>
       <Text style={styles.points}>POINTS: {this.state.points}</Text>
-      <Timer/>
+      <Timer onChange={this.onChange}/>
       <GameEngine
       ref={(ref) => { this.engine = ref; }}
         style={styles.container}
