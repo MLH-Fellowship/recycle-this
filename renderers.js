@@ -86,17 +86,10 @@ class Timer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      minutes: 0, //this.props.min,
-      seconds: 5,
+      minutes: 0,
+      seconds: 5
     }
   }
-
-
-componentDidUpdate(prevProps) {
-  if(prevProps.min !== this.props.min) {
-    this.setState({minutes: this.props.min});
-  }
-}
 
 componentDidMount() {
   this.myInterval = setInterval(() => {

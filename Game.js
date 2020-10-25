@@ -17,7 +17,7 @@ export default class Game extends React.Component  {
     this.state ={
       running: true,
       points: 0,
-      timer: 1,
+      updateTimer: 0,
       item: "can" //random
     }
   }
@@ -49,7 +49,7 @@ export default class Game extends React.Component  {
     this.setState({
         running: true,
         points: 0,
-        timer: 1
+        updateTimer: this.state.updateTimer+1
     });
 }
 //
@@ -59,14 +59,10 @@ export default class Game extends React.Component  {
     }*/
   
   render() {
-      //if (this.state.running==false)
-        //this.props.navigation.navigate("GameOver", {points: this.state.points});
-   // if (!this.state.running && this.props.route.params.startAgain===true)
-     //   this.reset;
   return (
     <View style={styles.container}>
       <Text style={styles.points}>POINTS: {this.state.points}</Text>
-      <Timer min={this.state.timer} onChange={this.onChangeTimer}/>
+      <Timer key = {this.state.updateTimer} onChange={this.onChangeTimer}/>
       <GameEngine
       ref={(ref) => { this.engine = ref; }}
         style={styles.container}
