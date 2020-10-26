@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
- 
-const RADIUS = 20;
+import Constants from './Constants';
+
+const RADIUS = Constants.RADIUS;
 class Item extends PureComponent {
   constructor(props) {
     super(props);

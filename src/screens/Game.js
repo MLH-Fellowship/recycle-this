@@ -5,9 +5,9 @@ import { StyleSheet, Text, View, Dimensions, Alert, Button} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
 import { Item, Bin, Timer } from "../renderers";
 import { MoveItem, Collision } from "../systems";
-//import Constants from './Constants';
-const WIDTH = Dimensions.get("screen").width;
-const HEIGHT = Dimensions.get("screen").height;
+import Constants from './../Constants';
+const WIDTH = Constants.WIDTH;
+const HEIGHT = Constants.HEIGHT;
 
 
 export default class Game extends React.Component  {

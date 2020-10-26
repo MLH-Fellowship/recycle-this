@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
-
-items = ["apple","banana", "can", "newspaper"];
-const RADIUS = 20;
+import Constants from './Constants';
+items = ["apple","banana", "can", "champagne", "milk-box","newspaper", "plastic-bottle"];
+const RADIUS = Constants.RADIUS;
 let points = 0;
 let plastic = ["can", "plastic-bottle"];
 let paper = ["milk-box", "newspaper"];
@@ -23,8 +23,6 @@ const MoveItem = (entities, { touches }) => {
         ]
     }
     return entities;
-   
-   
   };
 
   function search (str, strArray) {

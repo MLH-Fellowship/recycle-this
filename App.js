@@ -5,13 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Game from './src/screens/Game';
 import Start from './src/screens/StartScreen';
 import GameOver from './src/screens/GameOver';
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
  
 const RootStack = createStackNavigator();
 
@@ -26,5 +20,11 @@ const App = () => {
     </NavigationContainer>
   );
 };
- 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 export default App;
