@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {PureComponent} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, View, Dimensions, Alert, Button} from 'react-native';
 import { GameEngine } from "react-native-game-engine";
-import { Item, Bin, Timer } from "./renderers";
-import { MoveItem, Collision } from "./systems";
+import { Item, Bin, Timer } from "../renderers";
+import { MoveItem, Collision } from "../systems";
 //import Constants from './Constants';
 const WIDTH = Dimensions.get("screen").width;
 const HEIGHT = Dimensions.get("screen").height;
@@ -22,8 +23,21 @@ export default class Game extends React.Component  {
     }
   }
 
+  storeData = async (value) => {
+    try {
+      console.log("saved");
+      alert("Saved!");
+      return await AsyncStorage.setItem('points', value);
+      
+    } catch (e) {
+      console.log("can't save");
+      alert("Failed to save the data to the storage");
+    }
+  }
+
   onEvent = (e) => {
     if (e.type=='game-over') {
+      this.storeData(this.state.points);
       this.setState({
         running: false
       });
@@ -52,6 +66,9 @@ export default class Game extends React.Component  {
         updateTimer: this.state.updateTimer+1
     });
 }
+
+
+
 //
    /* componentDidMount() {
         if (this.props.route.params.startAgain==true)

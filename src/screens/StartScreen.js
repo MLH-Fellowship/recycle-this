@@ -5,7 +5,7 @@ const Start = ({navigation}) => {
     return(
     <View>
         <Text style={styles.title}>RecycleThis!</Text>
-        <Image source={require('./assets/bear.png')} key='bear' style={[styles.bear]}/>
+        <Image source={require('./../assets/bear.png')} key='bear' style={[styles.bear]}/>
         <Button
         title="PLAY"
         onPress={() => navigation.navigate('Game', {startAgain: false})}
