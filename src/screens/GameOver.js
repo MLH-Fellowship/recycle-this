@@ -6,21 +6,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const GameOver = ({route, navigation}) => {
-  const [points, setPoints] = useState(0);
+  const [points, setPoints] = useState([]);
   
   const getData = async () => {
-    let value = '';
-    try {
-      value = await AsyncStorage.getItem('points') || 'none';
-      setPoints(value);
-      if(value !== null) {
-        console.log(value);
+    AsyncStorage.getItem('points', (err,result) => {
+      if (result !== null) {
+        //console.log('Data found', result);
+        setPoints(result)
       }
-    } catch(e) {
-      console.log(e.message);
-      alert("can't read data");
-    }
-    return value;
+})
   }
 
   useEffect(() => {
@@ -34,7 +28,10 @@ const GameOver = ({route, navigation}) => {
 
     return(
     <View>
-        <Text>Game Over. Your score is {route.params.points}</Text>
+        <Text>Game Over. Your score is {route.params.points}. Username: {route.params.username}</Text>
+        <Text>Leaderboard {points}</Text>
+        
+
         <Button
         title="Go back to menu"
         onPress={() => navigation.navigate('Start')}
