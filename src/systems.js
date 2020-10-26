@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
 import Constants from './Constants';
-items = ["apple","banana", "can", "champagne", "milk-box","newspaper", "plastic-bottle"];
+const items = ["apple","banana", "can", "champagne", "milk-box","newspaper", "plastic-bottle"];
 const RADIUS = Constants.RADIUS;
 let points = 0;
 let plastic = ["can", "plastic-bottle"];
