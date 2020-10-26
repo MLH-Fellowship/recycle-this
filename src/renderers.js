@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
- 
-const RADIUS = 20;
+import Constants from './Constants';
 
+const RADIUS = Constants.RADIUS;
 class Item extends PureComponent {
   constructor(props) {
     super(props);
@@ -83,10 +83,13 @@ class Bin extends PureComponent {
 }
 
 class Timer extends PureComponent {
-state = {
-  minutes: 0,
-  seconds: 5,
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      minutes: 0,
+      seconds: 5
+    }
+  }
 
 componentDidMount() {
   this.myInterval = setInterval(() => {

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
-
-items = ["apple","banana", "can", "newspaper"];
-const RADIUS = 20;
+import Constants from './Constants';
+items = ["apple","banana", "can", "champagne", "milk-box","newspaper", "plastic-bottle"];
+const RADIUS = Constants.RADIUS;
 let points = 0;
 let plastic = ["can", "plastic-bottle"];
 let paper = ["milk-box", "newspaper"];
@@ -14,12 +14,6 @@ const WIDTH = Dimensions.get("screen").width;
 const HEIGHT = Dimensions.get("screen").height;
 
 const MoveItem = (entities, { touches }) => {
- 
-    //-- I'm choosing to update the game state (entities) directly for the sake of brevity and simplicity.
-    //-- There's nothing stopping you from treating the game state as immutable and returning a copy..
-    //-- Example: return { ...entities, t.id: { UPDATED COMPONENTS }};
-    //-- That said, it's probably worth considering performance implications in either case.
-
     let item = entities[1];
     let move = touches.find(x => x.type==="move");
     if (move) {
@@ -29,8 +23,6 @@ const MoveItem = (entities, { touches }) => {
         ]
     }
     return entities;
-   
-   
   };
 
   function search (str, strArray) {
