@@ -1,5 +1,5 @@
 # RecycleThis!
-
+![img](https://thumbs.dreamstime.com/b/people-waste-recycling-people-waste-recycling-man-woman-holding-recyclables-advertising-poster-concept-hand-159235152.jpg)
 ## Introduction
 
 
