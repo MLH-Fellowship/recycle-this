@@ -36,9 +36,10 @@ return(
     <View style={styles.header}> 
       <Text style={styles.title}>Leaderboard</Text>
       <View style={styles.content}>
-        <Text style={{color: 'white'}}>position {JSON.stringify(position)}</Text> 
+        <Text style={styles.points}
+         >position {JSON.stringify(position)}</Text> 
         <Image source={img} style={styles.image}></Image>
-        <Text style={{color: 'white'}}> {route.params.points} points </Text>
+        <Text style={styles.points}> {route.params.points} points </Text>
     </View>
     <TouchableOpacity
       style={styles.customBtnBG}
@@ -66,7 +67,11 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: 'green',
-    height: HEIGHT * 0.3
+    height: HEIGHT * 0.3,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
   },
   title: {
     textAlign: 'center',
@@ -76,12 +81,17 @@ const styles = StyleSheet.create({
   },
   content: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent:'space-evenly'
   },
   image: {
     height: 50,
     width: 50,
-
+  },
+  points: {
+    color: 'white',
+    fontSize: 15,
+    paddingHorizontal: 10
   },
   customBtnText: {
     textAlign: "center",
@@ -98,7 +108,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     width: 200,
     marginTop: 0,
-    borderRadius: 30
+    borderRadius: 5
   }
 });
    
