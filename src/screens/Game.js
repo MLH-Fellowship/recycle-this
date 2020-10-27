@@ -10,6 +10,7 @@ from 'native-base';
 import { GameEngine } from "react-native-game-engine";
 import { OurItem, Bin, Timer } from "../renderers";
 import { MoveItem, Collision } from "../systems";
+import { Audio } from 'expo-av';
 import Constants from './../Constants';
 const WIDTH = Constants.WIDTH;
 const HEIGHT = Constants.HEIGHT;
@@ -27,6 +28,26 @@ export default class Game extends React.Component  {
       username: '',
       visibleModal: true,
       item: "can" //random
+    }
+  }
+
+  async componentDidMount() {
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      playsInSilentModeIOS: false,
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
+      shouldDuckAndroid: true,
+      staysActiveInBackground: false,
+      playThroughEarpieceAndroid: true,
+    });
+
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('./../assets/gamesound.mp3'));
+      await soundObject.playAsync();
+    } catch (error) {
+      console.log(error);
     }
   }
 
