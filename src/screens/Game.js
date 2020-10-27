@@ -55,6 +55,15 @@ export default class Game extends React.Component  {
     }
   }
 
+  async componentWillUnmount() {
+    try {
+      await this.soundObject.unloadAsync();
+      await this.soundObject.stopAsync();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   storeData = async (points, username) => {
     const v = [{
       points:points,
