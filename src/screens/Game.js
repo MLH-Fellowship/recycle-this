@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {PureComponent} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StyleSheet, View, Dimensions, Alert, Modal} from 'react-native';
+import { StyleSheet, View, Dimensions, Alert, Modal, Pressable} from 'react-native';
 import {
   Container, Header, Content, Card, Input,
   CardItem, Text, Right, Icon, Row,
@@ -10,6 +10,8 @@ from 'native-base';
 import { GameEngine } from "react-native-game-engine";
 import { OurItem, Bin, Timer } from "../renderers";
 import { MoveItem, Collision } from "../systems";
+import { Audio } from 'expo-av';
+import { Octicons } from '@expo/vector-icons';
 import Constants from './../Constants';
 const WIDTH = Constants.WIDTH;
 const HEIGHT = Constants.HEIGHT;
@@ -27,6 +29,38 @@ export default class Game extends React.Component  {
       username: '',
       visibleModal: true,
       item: "can" //random
+    }
+  }
+
+  
+  soundState = "sound";
+  soundObject = new Audio.Sound();
+  
+  async componentDidMount() {
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      playsInSilentModeIOS: false,
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
+      shouldDuckAndroid: true,
+      staysActiveInBackground: false,
+      playThroughEarpieceAndroid: true,
+    });
+
+    try {
+      await this.soundObject.loadAsync(require('./../assets/gamesound.mp3'));
+      await this.soundObject.playAsync();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async componentWillUnmount() {
+    try {
+      await this.soundObject.unloadAsync();
+      await this.soundObject.stopAsync();
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -48,6 +82,15 @@ export default class Game extends React.Component  {
     })
   }
 
+  toggleSound = () => {
+    if (this.soundState === "sound") {
+      this.soundState = "nosound";
+      this.soundObject.pauseAsync();
+    } else if (this.soundState === "nosound") {
+      this.soundState = "sound";
+      this.soundObject.playAsync();
+    }
+  };
 
   onEvent = (e) => { 
    if (e.type == 'correct') {
@@ -119,6 +162,9 @@ export default class Game extends React.Component  {
     <View style={styles.container}>
       <Text style={styles.points}>POINTS: {this.state.points}</Text>
       <Timer key = {this.state.updateTimer} onChange={this.onChangeTimer}/>
+      <Pressable onPress={this.toggleSound}>
+        <Octicons name={this.soundState === "sound" ? "unmute" : "mute"} size={24} color="black" />
+      </Pressable>
       <GameEngine
       ref={(ref) => { this.engine = ref; }}
         style={styles.container}
