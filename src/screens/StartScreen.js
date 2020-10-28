@@ -4,9 +4,9 @@ const Start = ({navigation}) => {
     return(
     <View style = {styles.MainContainer}>
         <Text style={styles.title}>RecycleThis!</Text>
-        <Image source={require('./../assets/bins-start.png')} key='bins' style={[styles.bins]}/>
         <Text style={styles.instructions}>"Try to sort as many items as you can in one minute! 
           If you put an item in the wrong bin, you lose points."</Text>
+        <Image source={require('./../assets/bins-start.png')} key='bins' style={[styles.bins]}/>
         <TouchableOpacity
           style={styles.customBtnBG}
           onPress={() => navigation.navigate('Game', {startAgain: false})}  >
@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'Futura',
     color: "#fff",
-    padding: 10
+    padding: 10,
+    textAlign: 'center',
   },
   customBtnText: {
     textAlign: "center",
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     width: 200,
     marginTop: 0,
-    borderRadius: 30
+    borderRadius: 30,
+    
   },
   bins: {
     borderRadius: 20 * 2,

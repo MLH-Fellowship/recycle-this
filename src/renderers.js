@@ -64,6 +64,7 @@ class Bin extends PureComponent {
         const y = this.props.position[1] - RADIUS / 2;
         let c = this.props.category;
         let img;
+        let styleComponent = styles.bin;
         if (c=="paper")
           img = require('./assets/bin_paper.png');
         else if (c=="glass")
@@ -72,13 +73,17 @@ class Bin extends PureComponent {
           img = require('./assets/bin_organic.png');
         else if (c=="plastic")
           img = require('./assets/bin_plastic.png');
-        else if (c=="cloud")
+        else if (c=="cloud") {
           img = require('./assets/cloud.png');
+          styleComponent = styles.cloud;
+
+
+        }
         else if (c=="trash")
           img = require('./assets/bin_trash.png');
         
         return (
-          <Image source={img} style={[styles.bin, { left: x, top: y }]}/>
+          <Image source={img} style={[styleComponent, { left: x, top: y }]}/>
           );
 
     }
@@ -88,8 +93,8 @@ class Timer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      minutes: 0,
-      seconds: 10
+      minutes: 2,
+      seconds: 30
     }
   }
 
@@ -153,7 +158,7 @@ const styles = StyleSheet.create({
   bin: {
     borderRadius: RADIUS * 2,
     width: RADIUS * 3,
-    height: RADIUS * 4,
+    height: 100,
     position: "absolute"
   },
   item: {
@@ -179,6 +184,12 @@ const styles = StyleSheet.create({
     //alignSelf: 'stretch'
     width: '100%',
     marginHorizontal: 0
+  },
+  cloud: {
+    width: null,
+    resizeMode: 'contain',
+    height: 60
+
   }
 });
  
