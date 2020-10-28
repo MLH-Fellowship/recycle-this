@@ -183,17 +183,17 @@ export default class Game extends React.Component  {
         entities={{
           1: {position: [WIDTH/2, HEIGHT-200], item: this.state.item, renderer: <OurItem/>}, 
           //bins
-          2: {position: [WIDTH-125, HEIGHT/3+30], category: "paper", renderer: <Bin/>},
-          3: {position: [WIDTH-55, HEIGHT/3+30], category: "glass", renderer: <Bin/>},
-          4: {position: [WIDTH/3.7, HEIGHT/3+30], category: "organic",renderer: <Bin/>},
-          5: {position: [WIDTH/16, HEIGHT/3+30], category: "plastic", renderer: <Bin/>},
-          6: {position: [WIDTH/2.1, HEIGHT/3+30], category: "trash", renderer: <Bin/>},
+          2: {position: [WIDTH-125, HEIGHT/3], category: "paper", renderer: <Bin/>},
+          3: {position: [WIDTH-55, HEIGHT/3], category: "glass", renderer: <Bin/>},
+          4: {position: [WIDTH/3.7, HEIGHT/3], category: "organic",renderer: <Bin/>},
+          5: {position: [WIDTH/16, HEIGHT/3], category: "plastic", renderer: <Bin/>},
+          6: {position: [WIDTH/2.1, HEIGHT/3], category: "trash", renderer: <Bin/>},
           // Clouds
           7: {position: [WIDTH/16, HEIGHT-670], category: "cloud", renderer: <Bin/>},
           8: {position: [WIDTH/16-100, HEIGHT-650], category: "cloud", renderer: <Bin/>},
-          9: {position: [WIDTH/16+100, HEIGHT-750], category: "cloud", renderer: <Bin/>},
+          9: {position: [WIDTH/16+100, HEIGHT-700], category: "cloud", renderer: <Bin/>},
           // Floor
-          16: {position: [0, HEIGHT/2.2], category: "floor", renderer: <Floor/>}
+          16: {position: [0, HEIGHT/3-90], category: "floor", renderer: <Floor/>}
 
         }}>
       <StatusBar hidden={true} />

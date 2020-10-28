@@ -27,7 +27,9 @@ const styles = StyleSheet.create({
     fontSize: 60,
     fontWeight: '400',
     fontFamily: 'Futura',
-    color: "#fff"
+    color: "#fff",
+    textShadowColor: 'black',
+    textShadowRadius: 2,
   },
   instructions: {
     fontSize: 20,
@@ -36,6 +38,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     padding: 10,
     textAlign: 'center',
+    textShadowColor: 'black',
+    textShadowRadius: 2,
   },
   customBtnText: {
     textAlign: "center",

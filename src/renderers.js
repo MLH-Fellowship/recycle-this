@@ -159,18 +159,23 @@ const styles = StyleSheet.create({
     borderRadius: RADIUS * 2,
     width: RADIUS * 3,
     height: 100,
-    position: "absolute"
+    position: "absolute",
+    resizeMode: 'contain'
   },
   item: {
     borderRadius: RADIUS * 2,
+    borderColor:'black',
     width: RADIUS * 2,
     height: RADIUS * 2,
+    resizeMode: 'contain',
     position: "absolute",
     zIndex: 999
   },
   time: {
     fontSize: 40,
     color: "#F3B337",
+    textShadowColor: 'black',
+    textShadowRadius: 5,
     fontFamily: 'Futura',
     textAlign: "center",
   },
@@ -183,7 +188,8 @@ const styles = StyleSheet.create({
   floor: {
     //alignSelf: 'stretch'
     width: '100%',
-    marginHorizontal: 0
+    marginHorizontal: 0,
+    resizeMode: 'stretch'
   },
   cloud: {
     width: null,
