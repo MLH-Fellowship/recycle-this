@@ -76,8 +76,10 @@ class Bin extends PureComponent {
         else if (c=="cloud") {
           img = require('./assets/cloud.png');
           styleComponent = styles.cloud;
-
-
+        }
+        else if (c=="mountain") {
+          img = require('./assets/mountain.png');
+          styleComponent = styles.mountain;
         }
         else if (c=="trash")
           img = require('./assets/bin_trash.png');
@@ -93,8 +95,8 @@ class Timer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      minutes: 2,
-      seconds: 30
+      minutes: 0,
+      seconds: 5
     }
   }
 
@@ -196,6 +198,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: 60
 
+  },
+  mountain: {
+    opacity: 50,
+    width: null,
+    resizeMode: 'contain',
+    height: 60
   }
 });
  

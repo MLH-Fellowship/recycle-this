@@ -192,6 +192,7 @@ export default class Game extends React.Component  {
           7: {position: [WIDTH/16, HEIGHT-670], category: "cloud", renderer: <Bin/>},
           8: {position: [WIDTH/16-100, HEIGHT-650], category: "cloud", renderer: <Bin/>},
           9: {position: [WIDTH/16+100, HEIGHT-700], category: "cloud", renderer: <Bin/>},
+          //10: {position: [WIDTH/16+100, HEIGHT-700], category: "mountain", renderer: <Bin/>},
           // Floor
           16: {position: [0, HEIGHT/3-90], category: "floor", renderer: <Floor/>}
 
