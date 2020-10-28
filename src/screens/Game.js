@@ -172,7 +172,7 @@ export default class Game extends React.Component  {
       <Text style={styles.points}>{this.state.points}</Text>
       <Timer key = {this.state.updateTimer} onChange={this.onChangeTimer}/>
       <Pressable onPress={this.toggleSound}>
-        <Octicons name={this.soundState === "sound" ? "unmute" : "mute"} size={24} color="black" />
+        <Octicons style = {styles.muteIcon}name={this.soundState === "sound" ? "unmute" : "mute"} size={24} color="black" />
       </Pressable>
       <GameEngine
       ref={(ref) => { this.engine = ref; }}
@@ -181,24 +181,20 @@ export default class Game extends React.Component  {
         onEvent = {this.onEvent}
         systems={[MoveItem, Collision]}
         entities={{
-          1: {position: [WIDTH/2, HEIGHT-200], item: this.state.item, renderer: <OurItem/>}, //-- Notice that each entity has a unique id (required)
+          1: {position: [WIDTH/2, HEIGHT-200], item: this.state.item, renderer: <OurItem/>}, 
+          //bins
           2: {position: [WIDTH-125, HEIGHT/3], category: "paper", renderer: <Bin/>},
           3: {position: [WIDTH-55, HEIGHT/3], category: "glass", renderer: <Bin/>},
           4: {position: [WIDTH/3.7, HEIGHT/3], category: "organic",renderer: <Bin/>},
           5: {position: [WIDTH/16, HEIGHT/3], category: "plastic", renderer: <Bin/>},
           6: {position: [WIDTH/2.1, HEIGHT/3], category: "trash", renderer: <Bin/>},
           // Clouds
-          7: {position: [WIDTH/2.3, HEIGHT/7], category: "cloud", renderer: <Bin/>},
-          8: {position: [WIDTH/2, HEIGHT/8], category: "cloud", renderer: <Bin/>},
-          9: {position: [WIDTH/1.7, HEIGHT/6.8], category: "cloud", renderer: <Bin/>},
-          10: {position: [WIDTH-90, HEIGHT/20], category: "cloud", renderer: <Bin/>},
-          11: {position: [WIDTH-60, HEIGHT/30], category: "cloud", renderer: <Bin/>},
-          12: {position: [WIDTH-40, HEIGHT/22], category: "cloud", renderer: <Bin/>},
-          13: {position: [WIDTH/5, HEIGHT/12], category: "cloud", renderer: <Bin/>},
-          14: {position: [WIDTH/22, HEIGHT/12], category: "cloud", renderer: <Bin/>},
-          15: {position: [WIDTH/10, HEIGHT/14], category: "cloud", renderer: <Bin/>},
+          7: {position: [WIDTH/16, HEIGHT-670], category: "cloud", renderer: <Bin/>},
+          8: {position: [WIDTH/16-100, HEIGHT-650], category: "cloud", renderer: <Bin/>},
+          9: {position: [WIDTH/16+100, HEIGHT-700], category: "cloud", renderer: <Bin/>},
+          //10: {position: [WIDTH/16+100, HEIGHT-700], category: "mountain", renderer: <Bin/>},
           // Floor
-          16: {position: [0, HEIGHT/2.2], category: "floor", renderer: <Floor/>}
+          16: {position: [0, HEIGHT/3-90], category: "floor", renderer: <Floor/>}
 
         }}>
       <StatusBar hidden={true} />
@@ -229,12 +225,15 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'Futura',
     textAlign: "right",
+    marginHorizontal: 10
+    
   },
   points: {
     fontSize: 30,
     fontWeight: '400',
     fontFamily: 'Futura',
     textAlign: "right",
+    marginHorizontal: 10
   },
   modalView: {
     backgroundColor: "white",
@@ -250,6 +249,9 @@ const styles = StyleSheet.create({
  modalButton: {
    paddingVertical: 50,
    alignSelf: 'center'
+ },
+ muteIcon: {
+   marginTop: 0
  }
   
 });

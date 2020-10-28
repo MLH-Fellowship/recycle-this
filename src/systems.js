@@ -43,7 +43,7 @@ const MoveItem = (entities, { touches }) => {
       var dy = item.position[1]-bin.position[1];
       var distance = Math.sqrt(dx*dx+dy*dy);
       if (distance < (RADIUS*2)) {
-        item.position = [WIDTH/2, HEIGHT-100];
+        item.position = [WIDTH/2, HEIGHT-200];
         if ((search(item.item, plastic)!=-1 && bin.category=="plastic") ||
          (search(item.item, organic)!=-1 && bin.category=="organic") ||
          (search(item.item, paper)!=-1 && bin.category=="paper") ||

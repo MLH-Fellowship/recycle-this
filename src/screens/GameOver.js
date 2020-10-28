@@ -22,13 +22,24 @@ const GameOver = ({route, navigation}) => {
       }
 })
   }
+  const simulateSlowNetworkRequest = () =>
+  new Promise(resolve => setTimeout(resolve, 1000));
+
 
   useEffect(() => {
-   
-      getData();
-      setPosition(points
-    .findIndex(elem => elem.points == route.params.points && elem.username==route.params.username)+1)
-        });
+    let isMounted = true;
+    simulateSlowNetworkRequest().then(() => {
+      if (isMounted==true) {
+        getData();
+        setPosition(points
+      .findIndex(elem => elem.points == route.params.points && elem.username==route.params.username)+1);
+        }  
+    })
+    
+    return () => {
+        isMounted = false;
+      }
+    });
 
 return(
   <View style={styles.container}>

@@ -64,6 +64,7 @@ class Bin extends PureComponent {
         const y = this.props.position[1] - RADIUS / 2;
         let c = this.props.category;
         let img;
+        let styleComponent = styles.bin;
         if (c=="paper")
           img = require('./assets/bin_paper.png');
         else if (c=="glass")
@@ -72,13 +73,19 @@ class Bin extends PureComponent {
           img = require('./assets/bin_organic.png');
         else if (c=="plastic")
           img = require('./assets/bin_plastic.png');
-        else if (c=="cloud")
+        else if (c=="cloud") {
           img = require('./assets/cloud.png');
+          styleComponent = styles.cloud;
+        }
+        else if (c=="mountain") {
+          img = require('./assets/mountain.png');
+          styleComponent = styles.mountain;
+        }
         else if (c=="trash")
           img = require('./assets/bin_trash.png');
         
         return (
-          <Image source={img} style={[styles.bin, { left: x, top: y }]}/>
+          <Image source={img} style={[styleComponent, { left: x, top: y }]}/>
           );
 
     }
@@ -89,7 +96,7 @@ class Timer extends PureComponent {
     super(props);
     this.state = {
       minutes: 0,
-      seconds: 10
+      seconds: 5
     }
   }
 
@@ -153,19 +160,24 @@ const styles = StyleSheet.create({
   bin: {
     borderRadius: RADIUS * 2,
     width: RADIUS * 3,
-    height: RADIUS * 4,
-    position: "absolute"
+    height: 100,
+    position: "absolute",
+    resizeMode: 'contain'
   },
   item: {
     borderRadius: RADIUS * 2,
+    borderColor:'black',
     width: RADIUS * 2,
     height: RADIUS * 2,
+    resizeMode: 'contain',
     position: "absolute",
     zIndex: 999
   },
   time: {
     fontSize: 40,
     color: "#F3B337",
+    textShadowColor: 'black',
+    textShadowRadius: 5,
     fontFamily: 'Futura',
     textAlign: "center",
   },
@@ -178,7 +190,20 @@ const styles = StyleSheet.create({
   floor: {
     //alignSelf: 'stretch'
     width: '100%',
-    marginHorizontal: 0
+    marginHorizontal: 0,
+    resizeMode: 'stretch'
+  },
+  cloud: {
+    width: null,
+    resizeMode: 'contain',
+    height: 60
+
+  },
+  mountain: {
+    opacity: 50,
+    width: null,
+    resizeMode: 'contain',
+    height: 60
   }
 });
  
