@@ -31,5 +31,9 @@ To learn more about Expo: https://reactnative.dev/docs/environment-setup
 - implementing a global leaderboard rather than local (add database)
 - adding a nicer landscape for the game's screen (mountains))
 - adding multiple player / competition mode
+- publishing / deploying ✨!
+
+## Quick Demo
+--> link to demo video
 
 LICENSE: MIT
