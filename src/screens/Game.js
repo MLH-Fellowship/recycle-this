@@ -15,7 +15,7 @@ import { Octicons } from '@expo/vector-icons';
 import Constants from './../Constants';
 const WIDTH = Constants.WIDTH;
 const HEIGHT = Constants.HEIGHT;
-
+let iconURL = ['https://www.shareicon.net/data/128x128/2015/08/17/86679_cat_256x256.png', 'https://www.shareicon.net/data/128x128/2015/08/17/86680_cat_256x256.png','https://www.shareicon.net/data/128x128/2015/08/17/86684_cat_256x256.png', 'https://www.shareicon.net/data/128x128/2015/04/04/17581_cat_128x128.png','https://www.shareicon.net/data/128x128/2015/04/04/17584_animal_128x128.png','https://www.shareicon.net/data/128x128/2015/04/04/17589_animal_128x128.png','https://www.shareicon.net/data/128x128/2015/04/04/17590_animal_128x128.png', 'https://www.shareicon.net/data/128x128/2015/04/04/17586_animal_128x128.png'];
 
 export default class Game extends React.Component  {
   constructor() {
@@ -67,8 +67,11 @@ export default class Game extends React.Component  {
   storeData = async (points, username) => {
     const v = [{
       points:points,
-      username: username}];
+      username: username,
+      icon: iconURL[[Math.floor(Math.random() * iconURL.length)]]
+    }];
     AsyncStorage.getItem('points', (err,result) => {
+
       if (result !== null) {
         //console.log('Data found', result);
         var arr = JSON.parse(result) || [];

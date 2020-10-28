@@ -11,24 +11,24 @@ const HEIGHT = Constants.HEIGHT;
 const GameOver = ({route, navigation}) => {
   const [points, setPoints] = useState([{}]);
   const [position, setPosition] = useState(1);
-  let iconURL = 'https://www.flaticon.com/svg/static/icons/svg/860/860784.svg'
   let img = require('./../assets/trophy.png')
   
   const getData = async () => {
     AsyncStorage.getItem('points', (err,result) => {
       if (result !== null) {
         //console.log('Data found', result);
-        setPoints(JSON.parse(result).sort((a,b) => a.points < b.points ? 1: -1))
+        setPoints(JSON.parse(result).sort((a,b) => b.points - a.points))
 
       }
 })
   }
 
   useEffect(() => {
-   getData();
-  setPosition(points
+   
+      getData();
+      setPosition(points
     .findIndex(elem => elem.points == route.params.points && elem.username==route.params.username)+1)
-  });
+        });
 
 return(
   <View style={styles.container}>
@@ -51,8 +51,8 @@ return(
   data={points} 
   labelBy='username'
   sortBy='points'
-  sort = {data =>data.sort((a,b) => a.points < b.points ? 1: -1)}
-  icon={iconURL}
+  //sort = {data =>data.sort((a,b) => b.points - a.points)} 
+  icon='icon'
   evenRowColor='gainsboro'
   containerStyle={styles.leaderboard}
   />
