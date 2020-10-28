@@ -18,7 +18,7 @@ const GameOver = ({route, navigation}) => {
     AsyncStorage.getItem('points', (err,result) => {
       if (result !== null) {
         //console.log('Data found', result);
-        setPoints(JSON.parse(result))
+        setPoints(JSON.parse(result).sort((a,b) => a.points < b.points ? 1: -1))
 
       }
 })
@@ -27,8 +27,7 @@ const GameOver = ({route, navigation}) => {
   useEffect(() => {
    getData();
   setPosition(points
-    .sort((a,b) => a.points < b.points ? 1: -1)
-    .findIndex(elem => elem.points <= route.params.points)+1)
+    .findIndex(elem => elem.points == route.params.points && elem.username==route.params.username)+1)
   });
 
 return(
@@ -50,8 +49,9 @@ return(
     </View>
   <Leaderboard 
   data={points} 
-  sortBy='points' 
   labelBy='username'
+  sortBy='points'
+  sort = {data =>data.sort((a,b) => a.points < b.points ? 1: -1)}
   icon={iconURL}
   evenRowColor='gainsboro'
   containerStyle={styles.leaderboard}

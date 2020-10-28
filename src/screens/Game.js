@@ -123,25 +123,29 @@ export default class Game extends React.Component  {
     return (
       <View style={styles.modalView}>
         <Form>
-          <Item fixedLabel>
-            <Label>Your score: {this.state.points}. To save it insert your username</Label>
-            <Input 
+          <Item stackedLabel>
+            <Label>Insert a username to save your score!</Label>
+            <Input
               value={this.state.username}
               onChangeText={(text) => { 
                 this.setState({username: text})}}
             />
             </Item>
-            <Button onPress={() => {
+            <Button rounded success 
+              style={styles.modalButton}
+              onPress={() => {
               this.storeData(JSON.stringify(this.state.points), this.state.username);
               this.reset()
               
               }}>
               <Text>Play again</Text>
             </Button>
-            <Button title="View Leaderboard" 
+            <Button rounded warning
+            style={styles.modalButton}
+            title="View Leaderboard" 
             onPress={() => {
               this.storeData(JSON.stringify(this.state.points), this.state.username);
-              this.props.navigation.navigate("GameOver", {points: this.state.points})
+              this.props.navigation.navigate("GameOver", {points: this.state.points, username: this.state.username})
               this.setState({
               visibleModal: false
               })
@@ -216,11 +220,19 @@ const styles = StyleSheet.create({
     color: 'red'
   },
   modalView: {
-    //justifyContent: "center",
-    //alignItems: "center",
-    alignSelf: "center",
     backgroundColor: "white",
-    width: WIDTH*0.8
-  }
+    display: 'flex',
+    flexDirection: 'row',
+    height: HEIGHT*0.3,
+    marginTop: 200,
+    width: WIDTH*0.9,
+    borderRadius: 20,
+    alignSelf: 'center',
+    alignContent: 'center'
+  },
+ modalButton: {
+   paddingVertical: 50,
+   alignSelf: 'center'
+ }
   
 });
