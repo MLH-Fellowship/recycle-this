@@ -125,14 +125,30 @@ render() {
   return (
       <View>
           { minutes === 0 && seconds === 0
-              ? <Text>Busted!</Text>
-              : <Text>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</Text>
+              ? <Text style={styles.busted}>Busted!</Text>
+              : <Text style={styles.time}>Time: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</Text>
           }
       </View>
   )
 }
 }
  
+
+class Floor extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+    render() {
+        const x = this.props.position[0] - RADIUS / 2;
+        const y = this.props.position[1] - RADIUS / 2;
+        let c = this.props.category;
+        let img;
+        img = require('./assets/floor2.png');
+        return (
+          <Image source={img} style={[styles.floor, { left: x, top: y }]}/>
+          );
+}
+}
 const styles = StyleSheet.create({
   bin: {
     borderRadius: RADIUS * 2,
@@ -144,12 +160,26 @@ const styles = StyleSheet.create({
     borderRadius: RADIUS * 2,
     width: RADIUS * 2,
     height: RADIUS * 2,
-    position: "absolute"
+    position: "absolute",
+    zIndex: 999
   },
-  timer: {
-    position: "absolute"
+  time: {
+    fontSize: 40,
+    color: "#F3B337",
+    fontFamily: 'Futura',
+    textAlign: "center",
+  },
+  busted: {
+    fontSize: 30,
+    color: "#F3B337",
+    fontFamily: 'Futura',
+    textAlign: "center",
+  },
+  floor: {
+    //alignSelf: 'stretch'
+    width: '100%',
+    marginHorizontal: 0
   }
-
 });
  
-export { OurItem, Bin, Timer };
+export { OurItem, Bin, Timer, Floor };

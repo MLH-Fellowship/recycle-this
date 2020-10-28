@@ -8,7 +8,8 @@ import {
   Left, Body, Title, Button, Label, Form, Item }
 from 'native-base';
 import { GameEngine } from "react-native-game-engine";
-import { OurItem, Bin, Timer } from "../renderers";
+
+import { OurItem, Bin, Timer, Floor } from "../renderers";
 import { MoveItem, Collision } from "../systems";
 import { Audio } from 'expo-av';
 import { Octicons } from '@expo/vector-icons';
@@ -167,7 +168,8 @@ export default class Game extends React.Component  {
   render() {
   return (
     <View style={styles.container}>
-      <Text style={styles.points}>POINTS: {this.state.points}</Text>
+      <Text style={styles.score}>Score</Text>
+      <Text style={styles.points}>{this.state.points}</Text>
       <Timer key = {this.state.updateTimer} onChange={this.onChangeTimer}/>
       <Pressable onPress={this.toggleSound}>
         <Octicons name={this.soundState === "sound" ? "unmute" : "mute"} size={24} color="black" />
@@ -179,7 +181,7 @@ export default class Game extends React.Component  {
         onEvent = {this.onEvent}
         systems={[MoveItem, Collision]}
         entities={{
-          1: {position: [WIDTH/2, HEIGHT-100], item: this.state.item, renderer: <OurItem/>}, //-- Notice that each entity has a unique id (required)
+          1: {position: [WIDTH/2, HEIGHT-200], item: this.state.item, renderer: <OurItem/>}, //-- Notice that each entity has a unique id (required)
           2: {position: [WIDTH-125, HEIGHT/3], category: "paper", renderer: <Bin/>},
           3: {position: [WIDTH-55, HEIGHT/3], category: "glass", renderer: <Bin/>},
           4: {position: [WIDTH/3.7, HEIGHT/3], category: "organic",renderer: <Bin/>},
@@ -195,6 +197,9 @@ export default class Game extends React.Component  {
           13: {position: [WIDTH/5, HEIGHT/12], category: "cloud", renderer: <Bin/>},
           14: {position: [WIDTH/22, HEIGHT/12], category: "cloud", renderer: <Bin/>},
           15: {position: [WIDTH/10, HEIGHT/14], category: "cloud", renderer: <Bin/>},
+          // Floor
+          16: {position: [0, HEIGHT/2.2], category: "floor", renderer: <Floor/>}
+
         }}>
       <StatusBar hidden={true} />
       </GameEngine>
@@ -219,8 +224,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: "#63CDDA"
   },
+  score: {
+    fontSize: 20,
+    fontWeight: '400',
+    fontFamily: 'Futura',
+    textAlign: "right",
+  },
   points: {
-    color: 'red'
+    fontSize: 30,
+    fontWeight: '400',
+    fontFamily: 'Futura',
+    textAlign: "right",
   },
   modalView: {
     backgroundColor: "white",
