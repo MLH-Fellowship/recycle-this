@@ -45,8 +45,9 @@ To learn more about Expo: https://reactnative.dev/docs/environment-setup
 - adding multiple player / competition mode
 - publishing / deploying ✨!
 
-## Quick Demo
---> link to demo video
+## Links
+[Quick Demo](https://vimeo.com/473894084)
+[Devpost](https://devpost.com/software/recyclethis-30a21r)
 
 ## Credits
 
