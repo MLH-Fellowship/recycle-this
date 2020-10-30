@@ -46,8 +46,8 @@ To learn more about Expo: https://reactnative.dev/docs/environment-setup
 - publishing / deploying ✨!
 
 ## Links
-[Quick Demo](https://vimeo.com/473894084)
-[Devpost](https://devpost.com/software/recyclethis-30a21r)
+- [Quick Demo](https://vimeo.com/473894084) 
+- [Devpost](https://devpost.com/software/recyclethis-30a21r)
 
 ## Credits
 
